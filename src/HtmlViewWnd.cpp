@@ -158,7 +158,6 @@ LRESULT CALLBACK CHTMLViewWnd::WndProc( HWND hWnd, UINT uMessage, WPARAM wParam,
 
 void CHTMLViewWnd::OnCreate()
 {
-
 }
 
 void CHTMLViewWnd::OnPaint( simpledib::dib* dib, LPRECT rcDraw )
@@ -208,7 +207,6 @@ void CHTMLViewWnd::OnSize( int width, int height )
 
 void CHTMLViewWnd::OnDestroy()
 {
-
 }
 
 void CHTMLViewWnd::create( int x, int y, int width, int height, HWND parent )

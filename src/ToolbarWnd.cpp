@@ -580,7 +580,6 @@ std::shared_ptr<litehtml::element> CToolbarWnd::create_element(const char* tag_n
 
 void CToolbarWnd::import_css(litehtml::string& text, const litehtml::string& url, litehtml::string& baseurl)
 {
-
 }
 
 void CToolbarWnd::get_client_rect( litehtml::position& client ) const

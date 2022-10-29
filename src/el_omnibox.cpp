@@ -11,7 +11,6 @@ el_omnibox::el_omnibox(const std::shared_ptr<litehtml::document>& doc, HWND pare
 
 el_omnibox::~el_omnibox()
 {
-
 }
 
 void el_omnibox::update_position()
