@@ -238,8 +238,8 @@ void CToolbarWnd::OnPaint( simpledib::dib* dib, LPRECT rcDraw )
 		cairo_set_source_rgb(cr, 1, 1, 1);
 		cairo_paint(cr);
 
-		litehtml::position clip(rcDraw->left, rcDraw->top, rcDraw->right - rcDraw->left, rcDraw->bottom - rcDraw->top);
-		m_doc->draw((litehtml::uint_ptr) cr, 0, 0, &clip);
+		litehtml::position clip({ rcDraw->left, rcDraw->top }, { rcDraw->right - rcDraw->left, rcDraw->bottom - rcDraw->top });
+		m_doc->draw((litehtml::uint_ptr) cr, point_default, &clip);
 
 		cairo_destroy(cr);
 		cairo_surface_destroy(surface);
@@ -340,12 +340,12 @@ void CToolbarWnd::OnMouseMove(int x, int y)
 		BOOL process = TRUE;
 		if (m_omnibox)
 		{
-			m_omnibox->OnMouseMove(x, y);
+			m_omnibox->OnMouseMove({ x, y });
 		}
 		if (!m_inCapture)
 		{
 			litehtml::position::vector redraw_boxes;
-			if (m_doc->on_mouse_over(x, y, x, y, redraw_boxes))
+			if (m_doc->on_mouse_over({ x, y }, { x, y }, redraw_boxes))
 			{
 				for (litehtml::position::vector::iterator box = redraw_boxes.begin(); box != redraw_boxes.end(); box++)
 				{
@@ -395,14 +395,14 @@ void CToolbarWnd::OnLButtonDown(int x, int y)
 	if(m_doc)
 	{
 		BOOL process = TRUE;
-		if (m_omnibox && m_omnibox->OnLButtonDown(x, y))
+		if (m_omnibox && m_omnibox->OnLButtonDown({ x, y }))
 		{
 			process = FALSE;
 		}
 		if (process && !m_inCapture)
 		{
 			litehtml::position::vector redraw_boxes;
-			if (m_doc->on_lbutton_down(x, y, x, y, redraw_boxes))
+			if (m_doc->on_lbutton_down({ x, y }, { x, y }, redraw_boxes))
 			{
 				for (litehtml::position::vector::iterator box = redraw_boxes.begin(); box != redraw_boxes.end(); box++)
 				{
@@ -424,14 +424,14 @@ void CToolbarWnd::OnLButtonUp( int x, int y )
 	if(m_doc)
 	{
 		BOOL process = TRUE;
-		if (m_omnibox && m_omnibox->OnLButtonUp(x, y))
+		if (m_omnibox && m_omnibox->OnLButtonUp({ x, y }))
 		{
 			process = FALSE;
 		}
 		if (process && !m_inCapture)
 		{
 			litehtml::position::vector redraw_boxes;
-			if (m_doc->on_lbutton_up(x, y, x, y, redraw_boxes))
+			if (m_doc->on_lbutton_up({ x, y }, { x, y }, redraw_boxes))
 			{
 				for (litehtml::position::vector::iterator box = redraw_boxes.begin(); box != redraw_boxes.end(); box++)
 				{

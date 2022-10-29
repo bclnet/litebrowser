@@ -37,10 +37,10 @@ public:
 	BOOL	OnKeyDown(WPARAM wParam, LPARAM lParam);
 	BOOL	OnKeyUp(WPARAM wParam, LPARAM lParam);
 	BOOL	OnChar(WPARAM wParam, LPARAM lParam);
-	void	OnLButtonDown(int x, int y);
-	void	OnLButtonUp(int x, int y);
-	void	OnLButtonDblClick(int x, int y);
-	void	OnMouseMove(int x, int y);
+	void	OnLButtonDown(litehtml::point p);
+	void	OnLButtonUp(litehtml::point p);
+	void	OnLButtonDblClick(litehtml::point p);
+	void	OnMouseMove(litehtml::point p);
 	void	setRect(LPRECT rcText);
 	void	setText(LPCWSTR text);
 	LPCWSTR getText()	{ return m_text.c_str(); }

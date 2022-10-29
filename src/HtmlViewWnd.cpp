@@ -179,8 +179,8 @@ void CHTMLViewWnd::OnPaint( simpledib::dib* dib, LPRECT rcDraw )
 	if(page)
 	{
 
-		litehtml::position clip(rcDraw->left, rcDraw->top, rcDraw->right - rcDraw->left, rcDraw->bottom - rcDraw->top);
-		page->m_doc->draw((litehtml::uint_ptr) cr, -m_left, -m_top, &clip);
+		litehtml::position clip({ rcDraw->left, rcDraw->top }, { rcDraw->right - rcDraw->left, rcDraw->bottom - rcDraw->top });
+		page->m_doc->draw((litehtml::uint_ptr)cr, { -m_left, -m_top }, &clip);
 
 		page->release();
 	}
@@ -593,7 +593,7 @@ void CHTMLViewWnd::OnMouseMove( int x, int y )
 	if(page)
 	{
 		litehtml::position::vector redraw_boxes;
-		if(page->m_doc->on_mouse_over(x + m_left, y + m_top, x, y, redraw_boxes))
+		if(page->m_doc->on_mouse_over({ x + m_left, y + m_top }, { x, y }, redraw_boxes))
 		{
 			for(litehtml::position::vector::iterator box = redraw_boxes.begin(); box != redraw_boxes.end(); box++)
 			{
@@ -647,7 +647,7 @@ void CHTMLViewWnd::OnLButtonDown( int x, int y )
 	if(page)
 	{
 		litehtml::position::vector redraw_boxes;
-		if(page->m_doc->on_lbutton_down(x + m_left, y + m_top, x, y, redraw_boxes))
+		if(page->m_doc->on_lbutton_down({ x + m_left, y + m_top }, { x, y }, redraw_boxes))
 		{
 			for(litehtml::position::vector::iterator box = redraw_boxes.begin(); box != redraw_boxes.end(); box++)
 			{
@@ -674,7 +674,7 @@ void CHTMLViewWnd::OnLButtonUp( int x, int y )
 	if(page)
 	{
 		litehtml::position::vector redraw_boxes;
-		if(page->m_doc->on_lbutton_up(x + m_left, y + m_top, x, y, redraw_boxes))
+		if(page->m_doc->on_lbutton_up({ x + m_left, y + m_top }, { x, y }, redraw_boxes))
 		{
 			for(litehtml::position::vector::iterator box = redraw_boxes.begin(); box != redraw_boxes.end(); box++)
 			{

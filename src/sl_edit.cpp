@@ -659,16 +659,16 @@ BOOL CSingleLineEditCtrl::OnKeyUp( WPARAM wParam, LPARAM lParam )
 	return TRUE;
 }
 
-void CSingleLineEditCtrl::OnLButtonDown( int x, int y )
+void CSingleLineEditCtrl::OnLButtonDown(litehtml::point p)
 {
-	m_caretPos = getCaretPosXY(x - m_rcText.left, y - m_rcText.top);
+	m_caretPos = getCaretPosXY(p.x - m_rcText.left, p.y - m_rcText.top);
 	setSelection(-1, m_caretPos);
 	SendMessage(m_parent, WM_EDIT_CAPTURE, TRUE, 0);
 	m_inCapture	= TRUE;
 	m_startCapture = m_caretPos;
 }
 
-void CSingleLineEditCtrl::OnLButtonUp( int x, int y )
+void CSingleLineEditCtrl::OnLButtonUp(litehtml::point p)
 {
 	if(m_inCapture)
 	{
@@ -677,9 +677,9 @@ void CSingleLineEditCtrl::OnLButtonUp( int x, int y )
 	}
 }
 
-void CSingleLineEditCtrl::OnLButtonDblClick( int x, int y )
+void CSingleLineEditCtrl::OnLButtonDblClick(litehtml::point p)
 {
-	int pos = getCaretPosXY(x - m_rcText.left, y - m_rcText.top);
+	int pos = getCaretPosXY(p.x - m_rcText.left, p.y - m_rcText.top);
 	int start = pos;
 	int end = pos;
 	for(;start > 0; start--)
@@ -703,11 +703,11 @@ void CSingleLineEditCtrl::OnLButtonDblClick( int x, int y )
 	}
 }
 
-void CSingleLineEditCtrl::OnMouseMove( int x, int y )
+void CSingleLineEditCtrl::OnMouseMove(litehtml::point p)
 {
 	if(m_inCapture)
 	{
-		m_caretPos = getCaretPosXY(x - m_rcText.left, y - m_rcText.top);
+		m_caretPos = getCaretPosXY(p.x - m_rcText.left, p.y - m_rcText.top);
 		setSelection(m_startCapture, m_caretPos);
 	}
 }

@@ -12,7 +12,7 @@ public:
 	el_omnibox(const std::shared_ptr<litehtml::document>& doc, HWND parent, cairo_container* container);
 	~el_omnibox();
 
-	virtual void draw(litehtml::uint_ptr hdc, int x, int y, const litehtml::position* clip, const std::shared_ptr<litehtml::render_item>& ri) override;
+	virtual void draw(litehtml::uint_ptr hdc, litehtml::point p, const litehtml::position* clip, const std::shared_ptr<litehtml::render_item>& ri) override;
 	virtual void parse_styles(bool is_reparse);
 	virtual void on_click();
 
@@ -42,9 +42,9 @@ public:
 	{
 		return m_edit.OnChar(wParam, lParam);
 	}
-	BOOL OnLButtonDown(int x, int y);
-	BOOL OnLButtonUp(int x, int y);
-	BOOL OnLButtonDblClick(int x, int y);
-	BOOL OnMouseMove(int x, int y);
+	BOOL OnLButtonDown(litehtml::point p);
+	BOOL OnLButtonUp(litehtml::point p);
+	BOOL OnLButtonDblClick(litehtml::point p);
+	BOOL OnMouseMove(litehtml::point p);
 
 };

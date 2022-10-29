@@ -30,9 +30,9 @@ void el_omnibox::set_url(LPCWSTR url)
 	m_edit.setText(url);
 }
 
-void el_omnibox::draw(litehtml::uint_ptr hdc, int x, int y, const litehtml::position* clip, const std::shared_ptr<litehtml::render_item>& ri)
+void el_omnibox::draw(litehtml::uint_ptr hdc, litehtml::point p, const litehtml::position* clip, const std::shared_ptr<litehtml::render_item>& ri)
 {
-	litehtml::html_tag::draw(hdc, x, y, clip, ri);
+	litehtml::html_tag::draw(hdc, p, clip, ri);
 
 	m_edit.draw((cairo_t*)hdc);
 }
@@ -100,56 +100,56 @@ std::wstring el_omnibox::get_url()
 	return str;
 }
 
-BOOL el_omnibox::OnLButtonDown(int x, int y)
+BOOL el_omnibox::OnLButtonDown(litehtml::point p)
 {
 	if (have_focus())
 	{
 		litehtml::position pos = litehtml::element::get_placement();
-		if (m_edit.in_capture() || pos.is_point_inside(x, y))
+		if (m_edit.in_capture() || pos.is_point_inside(p))
 		{
-			m_edit.OnLButtonDown(x, y);
+			m_edit.OnLButtonDown(p);
 			return TRUE;
 		}
 	}
 	return FALSE;
 }
 
-BOOL el_omnibox::OnLButtonUp(int x, int y)
+BOOL el_omnibox::OnLButtonUp(litehtml::point p)
 {
 	if (have_focus())
 	{
 		litehtml::position pos = litehtml::element::get_placement();
-		if (m_edit.in_capture() || pos.is_point_inside(x, y))
+		if (m_edit.in_capture() || pos.is_point_inside(p))
 		{
-			m_edit.OnLButtonUp(x, y);
+			m_edit.OnLButtonUp(p);
 			return TRUE;
 		}
 	}
 	return FALSE;
 }
 
-BOOL el_omnibox::OnLButtonDblClick(int x, int y)
+BOOL el_omnibox::OnLButtonDblClick(litehtml::point p)
 {
 	if (have_focus())
 	{
 		litehtml::position pos = litehtml::element::get_placement();
-		if (pos.is_point_inside(x, y))
+		if (pos.is_point_inside(p))
 		{
-			m_edit.OnLButtonDblClick(x, y);
+			m_edit.OnLButtonDblClick(p);
 			return TRUE;
 		}
 	}
 	return FALSE;
 }
 
-BOOL el_omnibox::OnMouseMove(int x, int y)
+BOOL el_omnibox::OnMouseMove(litehtml::point p)
 {
 	if (have_focus())
 	{
 		litehtml::position pos = litehtml::element::get_placement();
-		if (m_edit.in_capture() || pos.is_point_inside(x, y))
+		if (m_edit.in_capture() || pos.is_point_inside(p))
 		{
-			m_edit.OnMouseMove(x, y);
+			m_edit.OnMouseMove(p);
 			return TRUE;
 		}
 	}
