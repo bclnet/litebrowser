@@ -248,12 +248,10 @@ void CToolbarWnd::OnPaint( simpledib::dib* dib, LPRECT rcDraw )
 
 void CToolbarWnd::OnSize( int width, int height )
 {
-
 }
 
 void CToolbarWnd::OnDestroy()
 {
-
 }
 
 void CToolbarWnd::create( int x, int y, int width, HWND parent )
@@ -301,17 +299,14 @@ cairo_container::image_ptr CToolbarWnd::get_image(LPCWSTR url, bool redraw_on_re
 
 void CToolbarWnd::set_caption( const char* caption )
 {
-
 }
 
 void CToolbarWnd::set_base_url( const char* base_url )
 {
-
 }
 
 void CToolbarWnd::link(std::shared_ptr<litehtml::document>& doc, litehtml::element::ptr el)
 {
-
 }
 
 int CToolbarWnd::set_width( int width )
@@ -454,7 +449,7 @@ struct
 	LPCWSTR	url;
 } g_bookmarks[] = 
 {
-	{L"DMOZ",					L"http://www.dmoz.org/"},
+	{L"DMOZ",					L"http://www.dmoz-odp.org/"},
 	{L"litehtml project",		L"https://github.com/litehtml/litehtml"},
 	{L"litehtml website",		L"http://www.litehtml.com/"},
 	{L"True Launch Bar",		L"http://www.truelaunchbar.com/"},
